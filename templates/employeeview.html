@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Admin Employees
+{% endblock %}
+
+{% block content %}
+    {% comment %} {% if request.user.is_superuser %} {% endcomment %}
+    {% if request.user.is_superuser or request.user.role == 'employer'%}
+    <div style="margin-top: 64px;"> 
+        <!-- <nav class="navbar navbar-expand-sm navbar-light bg-white mb-2">
+    
+            <div class="mx-3" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                <a class="nav-link" href="{% url 'accounts:admin-employees' %}"> <img src="/static/img/icon_back_btn.png" style="width:13px; height:13px;" alt="Back Button"> Back to Employee List </a>               
+                </li>       
+            </ul>
+            </div>
+            </nav> -->
+            <div style="margin-left:320px ;" > 
+          <span style="font-size: 2rem; color:#4d0099;">  
+
+            {% if request.user.is_superuser %}
+                <a class="nav-link" href="{% url 'accounts:admin-employees' %}"> <img src="/static/img/icon_back_btn.png" style="width:13px; height:13px;" alt="Back Button"> Back to Employee List </a>               
+            {% else %}
+                <a class="nav-link" href="{% url 'jobs:employer-all-applicants' %}"> <img src="/static/img/icon_back_btn.png" style="width:13px; height:13px;" alt="Back Button"> Back to Applicants </a>
+            {% endif %}
+            
+        </span>
+        </div>
+        <div class="container-fluid" style="margin-left: 10px;">
+    
+                <div class="container">   
+                    <div class="row my-3">
+    
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header bg-info text-white">
+                                    Employee Detail Page
+                                </div>
+                                
+                                <div class="card-body p-5">
+                                    <div class="row">
+                                       
+                                        <span class="h3">{{ employee.first_name }} {{ employee.last_name }}</span>
+                                        <hr>
+                                        <table class="table bg-white table-borderless m-3">
+                                            <tbody>                           
+                                                <tr>
+                                                    <th scope="row">Gender:</th>
+                                                    <td>{{ employee.gender }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Email:</th>
+                                                    <td>{{ employee.email }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Province:</th>
+                                                    <td>{{ employee.province }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Skill:</th>
+                                                    <td>{{ employee.skill }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Experience:</th>
+                                                    <td>{{ employee.experience }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Qualification:</th>
+                                                    <td>{{ employee.qualification }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Resume:</th>
+                                                    <td><a href="{{ employee.resume.url }}">View</a></td>
+                                                </tr>
+                                      
+                                      
+
+                                           
+                                            </tbody>
+                                        </table>         
+                                        <hr>
+                                        <span class="h3"> Application </span>   
+                                        <hr>
+                                        <table class="table bg-white text-center">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Job Applied</th>
+                                                    <th scope="col">Type</th>
+                                                    <th scope="col">Salary</th>
+                                                    <th scope="col">Location</th>
+                                                    <th scope="col">Date Applied</th>
+                                                 
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for application in applications %}
+                                                <tr>
+                                                    <td>{{ application.job }}</td>
+                                                    <td>{% if application.job.type == '1' %}Full Time {% elif application.job.type == '2' %} Part Time {% else %} Internship {% endif %}</td>
+                                                    <td>{{ application.job.salary }}</td>
+                                                    <td>{{ application.job.location }}</td>
+                                                    <td>{{ application.created_at }}</td>   
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>                           
+                                    </div>                          
+                                </div>
+    
+                            </div>
+                        </div>
+                
+                    </div>
+                </div>
+    
+        </div>
+    
+    </div>
+   
+    {% endif %}
+{% endblock %}

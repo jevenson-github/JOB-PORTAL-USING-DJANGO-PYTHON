@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Admin Employees
+{% endblock %}
+
+{% block content %}
+    {% if request.user.is_superuser %}
+    <div style="margin-top: 64px;">
+        <nav class="navbar navbar-expand-sm navbar-light bg-white mb-2">
+    
+            <div class="mx-3" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                <a class="nav-link" href="{% url 'accounts:admin-jobs' %}"> <img src="/static/img/icon_back_btn.png" style="width:13px; height:13px;" alt="Back Button"> Back to Job List </a>               
+                </li>       
+            </ul>
+            </div>
+        </nav>
+
+        <div class="container-fluid" style="margin-left: 10px;">
+    
+                <div class="container">   
+                    <div class="row my-3">
+    
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header bg-info text-white">
+                                    Job Detail Page
+                                </div>
+                                
+                                <div class="card-body p-5">
+                                    <div class="row">
+                                       
+                                        <span class="h3">{{ job.title }}</span>
+                                        <hr>
+                                        <table class="table bg-white table-borderless m-3">
+                                            <tbody>                           
+                                                <tr>
+                                                    <th scope="row">Description:</th>
+                                                    <td>{{ job.description }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Location:</th>
+                                                    <td>{{ job.location }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Type:</th>
+                                                    <td>{% if job.type == '1' %}Full Time {% elif job.type == '2' %} Part Time {% else %} Internship {% endif %}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Skill:</th>
+                                                    <td>{{ job.skillReq }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Salary:</th>
+                                                    <td>{{ job.salary }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Validity:</th>
+                                                    <td>{{ job.last_date }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Status:</th>
+                                                    <td>{% if job.filled == True %}Filled{% else %} Not Filled {% endif %}</td>
+                                                </tr>
+                                      
+                                      
+
+                                           
+                                            </tbody>
+                                        </table>         
+                                        <hr>
+                                        <span class="h3"> Applicants </span>   
+                                        <hr>
+                                        <table class="table bg-white text-center">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Applicants</th>
+                                                    <th scope="col">Email</th>
+                                                    <th scope="col">Date Applied</th>
+                                                    <th scope="col">Resume</th>
+                                                 
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for applicant in applicants %}
+                                                <tr>
+                                                    <td>{{ applicant.user.first_name }} {{ applicant.user.last_name }}</td>
+                                                    <td>{{ applicant.user.email  }}</td>
+                                                    <td>{{ applicant.created_at }}</td>
+                                                    <td><a href="{{ applicant.user.resume.url }}">View Resume</a></td>      
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>                           
+                                    </div>                          
+                                </div>
+    
+                            </div>
+                        </div>
+                
+                    </div>
+                </div>
+    
+        </div>
+    
+    </div>
+   
+    {% endif %}
+{% endblock %}

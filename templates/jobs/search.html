@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    All jobs
+{% endblock %}
+
+{% block content %} 
+ <!-- search result  -->
+    <section>
+        <br><br><br>
+        <h3 class="heading" style="margin-left: 410px;">Found :  <span>{{ jobs.count }}</span>  </h3>
+        <div class="trending" style="background-color: white !important;">
+
+            {% for job in jobs %}
+                <div class="trends">
+
+                    <h4 class="job__title"><a href="{% url 'jobs:jobs-detail' job.id %}" style="text-decoration: none;">{{ job.title }}</a></h4>
+                    <p class="job__company"> {{ job.company_name }} </p>
+                    <br>
+                    <p> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-globe-americas" viewBox="0 0 16 16">
+                            <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0ZM2.04 4.326c.325 1.329 2.532 2.54 3.717 3.19.48.263.793.434.743.484-.08.08-.162.158-.242.234-.416.396-.787.749-.758 1.266.035.634.618.824 1.214 1.017.577.188 1.168.38 1.286.983.082.417-.075.988-.22 1.52-.215.782-.406 1.48.22 1.48 1.5-.5 3.798-3.186 4-5 .138-1.243-2-2-3.5-2.5-.478-.16-.755.081-.99.284-.172.15-.322.279-.51.216-.445-.148-2.5-2-1.5-2.5.78-.39.952-.171 1.227.182.078.099.163.208.273.318.609.304.662-.132.723-.633.039-.322.081-.671.277-.867.434-.434 1.265-.791 2.028-1.12.712-.306 1.365-.587 1.579-.88A7 7 0 1 1 2.04 4.327Z"/>
+                            </svg> {{ job.location }} | Created : {{ job.created_at|timesince }} ago
+                    </p>
+                      
+                    <p><b style="color:blueviolet;">Skills Requirements :</b><br><br>{{ job.skillReq }}</p>
+                            
+                    <p><b style="color:blueviolet;"> Job Description : </b> <br><br>{{ job.description }}</p>
+                     
+                </div>
+            {% endfor %}
+        </div>
+        
+            {% if is_paginated %}
+                <div class="row">
+                    <div class="col-md-12">
+                        <nav aria-label="Page navigation example" class="d-flex justify-content-center mt-4 mb-4">
+                            <ul class="pagination">
+                                {% if page_obj.has_previous %}
+                                    <li class="page-item">
+                                        <a href="?page={{ page_obj.previous_page_number }}"
+                                           class="page-link">&laquo;</a>
+                                    </li>
+                                {% else %}
+                                    <li class="page-item disabled">
+                                        <a class="page-link">&laquo;</a>
+                                    </li>
+                                {% endif %}
+                                {% for i in page_obj.paginator.page_range %}
+                                    {% if page_obj.number == i %}
+                                        <li class="page-item active">
+                                            <a class="page-link">{{ i }}</a>
+                                        </li>
+                                    {% else %}
+                                        <li class="page-item">
+                                            <a href="?page={{ i }}" class="page-link">{{ i }}</a>
+                                        </li>
+                                    {% endif %}
+                                {% endfor %}
+                                {% if page_obj.has_next %}
+                                    <li class="page-item">
+                                        <a href="?page={{ page_obj.next_page_number }}" class="page-link">&raquo;</a>
+                                    </li>
+                                {% else %}
+                                    <li class="page-item disabled">
+                                        <a class="page-link">&raquo;</a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+
+
+     <!-- job search  -->
+     <section class="jobsearch_section" style="background-color: white;" >  
+        
+        <div class="search_item1">  
+            <br><br>
+            <h3 class="heading" style="color: #000000;">
+                Find a jobs that matters to you 
+             </h3> 
+
+            <form id="job-main-form" method="get" action="{% url 'jobs:searh' %}" style="width: 500px;">
+                <br><br><br>
+                <p style="color: white;"> Search for Company | Title </p>
+                <div class="input-group mb-3"> 
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1"> 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-rocket-takeoff" viewBox="0 0 16 16">
+                            <path d="M9.752 6.193c.599.6 1.73.437 2.528-.362.798-.799.96-1.932.362-2.531-.599-.6-1.73-.438-2.528.361-.798.8-.96 1.933-.362 2.532Z"/>
+                            <path d="M15.811 3.312c-.363 1.534-1.334 3.626-3.64 6.218l-.24 2.408a2.56 2.56 0 0 1-.732 1.526L8.817 15.85a.51.51 0 0 1-.867-.434l.27-1.899c.04-.28-.013-.593-.131-.956a9.42 9.42 0 0 0-.249-.657l-.082-.202c-.815-.197-1.578-.662-2.191-1.277-.614-.615-1.079-1.379-1.275-2.195l-.203-.083a9.556 9.556 0 0 0-.655-.248c-.363-.119-.675-.172-.955-.132l-1.896.27A.51.51 0 0 1 .15 7.17l2.382-2.386c.41-.41.947-.67 1.524-.734h.006l2.4-.238C9.005 1.55 11.087.582 12.623.208c.89-.217 1.59-.232 2.08-.188.244.023.435.06.57.093.067.017.12.033.16.045.184.06.279.13.351.295l.029.073a3.475 3.475 0 0 1 .157.721c.055.485.051 1.178-.159 2.065Zm-4.828 7.475.04-.04-.107 1.081a1.536 1.536 0 0 1-.44.913l-1.298 1.3.054-.38c.072-.506-.034-.993-.172-1.418a8.548 8.548 0 0 0-.164-.45c.738-.065 1.462-.38 2.087-1.006ZM5.205 5c-.625.626-.94 1.351-1.004 2.09a8.497 8.497 0 0 0-.45-.164c-.424-.138-.91-.244-1.416-.172l-.38.054 1.3-1.3c.245-.246.566-.401.91-.44l1.08-.107-.04.039Zm9.406-3.961c-.38-.034-.967-.027-1.746.163-1.558.38-3.917 1.496-6.937 4.521-.62.62-.799 1.34-.687 2.051.107.676.483 1.362 1.048 1.928.564.565 1.25.941 1.924 1.049.71.112 1.429-.067 2.048-.688 3.079-3.083 4.192-5.444 4.556-6.987.183-.771.18-1.345.138-1.713a2.835 2.835 0 0 0-.045-.283 3.078 3.078 0 0 0-.3-.041Z"/>
+                            <path d="M7.009 12.139a7.632 7.632 0 0 1-1.804-1.352A7.568 7.568 0 0 1 3.794 8.86c-1.102.992-1.965 5.054-1.839 5.18.125.126 3.936-.896 5.054-1.902Z"/>
+                          </svg>
+                      </span>
+                    </div>
+                    <input type="text" id="profession" name="position" style="background-color: white ;" placeholder="Job Title or Keyword" class="form-control" required>
+                  </div> 
+                  <br>
+                  <p style="color: white;"> Location | Area </p>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1"> 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+                            <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+                            <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                          </svg>
+                      </span>
+                    </div>
+                    <input type="text" id="location" name="location" placeholder="Area , City or Town " style="background-color: white ;"  class="form-control" required>
+                  </div> 
+                <br> 
+
+                <button type="submit"  class="btn action_button" style="color: rgb(0, 0, 0);">Search Job</button>
+                <br><br><br>
+              </form> 
+        </div> 
+        
+        <div class="search_side">
+          <img src="{% static 'img/undraw_by_my_car_hnre.svg' %}" alt="" width="400px">
+        </div>
+    </section>  
+
+{% endblock %}

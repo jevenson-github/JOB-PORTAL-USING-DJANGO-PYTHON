@@ -1,0 +1,186 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Admin Employers
+{% endblock %}
+
+{% block content %}
+    {% if request.user.is_superuser %}
+    {% load accounts_extras %}
+    </br></br>
+    <h3 style="margin-left: 400px;color:#4d0099;">  
+        INACTIVE JOB PROVIDER LIST 
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-file-earmark-person" viewBox="0 0 16 16">
+            <path d="M11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+            <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2v9.255S12 12 8 12s-5 1.755-5 1.755V2a1 1 0 0 1 1-1h5.5v2z"/>
+          </svg>
+         
+    </h3> 
+
+
+    <br><br>
+      <div  class="admin_dashboard">
+            
+        <div class="statistic1">
+            <div class="">
+               <div class="">
+                   <h2>8</h2>
+                   <h6 style="color:#4d0099;"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-rolodex" viewBox="0 0 16 16">
+                       <path d="M8 9.05a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
+                       <path d="M1 1a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h.5a.5.5 0 0 0 .5-.5.5.5 0 0 1 1 0 .5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5.5.5 0 0 1 1 0 .5.5 0 0 0 .5.5h.5a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H6.707L6 1.293A1 1 0 0 0 5.293 1H1Zm0 1h4.293L6 2.707A1 1 0 0 0 6.707 3H15v10h-.085a1.5 1.5 0 0 0-2.4-.63C11.885 11.223 10.554 10 8 10c-2.555 0-3.886 1.224-4.514 2.37a1.5 1.5 0 0 0-2.4.63H1V2Z"/>
+                     </svg> Job Seeker </h6>
+               </div>
+            </div>
+        </div>
+       
+        <div class="statistic1">
+            <div class="">
+               <div class="">
+                   <h2>4</h2>
+                   <h6 style="color:#4d0099;">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-file-earmark-person" viewBox="0 0 16 16">
+                       <path d="M11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                       <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2v9.255S12 12 8 12s-5 1.755-5 1.755V2a1 1 0 0 1 1-1h5.5v2z"/>
+                     </svg>   Job Provider </h6>               
+               </div>
+            </div>
+        </div>
+   
+
+        <div class="statistic1"> 
+            <div class="">
+               <div class="">
+                   <h2>11</h2>
+                   <h6 style="color:#4d0099;"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
+                       <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
+                       <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
+                     </svg> Jobs</h6>  
+               </div>
+            </div>
+        </div>
+   
+        <div class="statistic1">
+            <div class="">
+               <div class="">
+                   <h2>32</h2>
+                   <h6 style="color:#4d0099;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-activity" viewBox="0 0 16 16">
+                       <path fill-rule="evenodd" d="M6 2a.5.5 0 0 1 .47.33L10 12.036l1.53-4.208A.5.5 0 0 1 12 7.5h3.5a.5.5 0 0 1 0 1h-3.15l-1.88 5.17a.5.5 0 0 1-.94 0L6 3.964 4.47 8.171A.5.5 0 0 1 4 8.5H.5a.5.5 0 0 1 0-1h3.15l1.88-5.17A.5.5 0 0 1 6 2Z"/>
+                     </svg> Activity Logs</h6>          
+               </div>
+            </div>
+        </div>
+   
+       </div> 
+
+       <br><br>
+       <div class="row" style="margin-left: 400px;">
+        <div class="col-md-1">
+            <a class="nav-link" href="{% url 'accounts:admin-employers' %}"><span>ACTIVE</span></a>
+        </div>
+        <div class="col-md-1">
+            <a class="nav-link" href="{% url 'accounts:inactive_employers' %}"><span><b>INACTIVE</b></span></a>
+        </div>
+    </div> 
+    <br><br>
+    {% comment %} <form method="GET">
+        <div class="row" style="margin: 10px;">
+            <div class="col-md-3">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Name" name="name" aria-label="Search">
+            </div>
+             <div class="col-md-3">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </form> {% endcomment %}
+        
+    <div style="margin-left: 400px; margin-right:400px;">
+        <table id="tablekeri" class="table table-light mt-3 ">
+        <thead class="thead-dark">
+    <tr>
+        <th>ID</th>
+        <th>Company</th>
+        <th>Email</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+   
+        {% for employer in page %}
+        <tr>
+        <td>{{ employer.id }}</td>
+        <td>{{ employer.first_name }}</td>
+        <td>{{ employer.email }}</td>
+        <td> 
+            <span class="tooltips_top">
+                <input type="hidden" id="link{{ employer.id }}" value="{% url 'accounts:employer-activate' employer.id %}">
+                <button class="btn btn-primary" onclick="confirm({{ employer.id }}, '{{ employer.first_name }}','ACTIVATE')" data-toggle="modal" data-target="#activateModal">
+                  ACTIVATE
+                </button>
+                </span> 
+          
+        </td>
+    </tr>
+        {% endfor %}
+    </tbody>
+    </table> 
+     
+   {% if request.user.is_superuser %} 
+   <!-- jquery -->
+ <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+   {% endif %}
+
+ <!-- bootstrap -->
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+ <!-- datatables -->
+ <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script> 
+ <script src="https://cdn.datatables.net/buttons/2.3.2/js/dataTables.buttons.min.js"></script>
+ <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.print.min.js"></script>
+ 
+   
+
+ <script>
+   $(document).ready(function() {
+       $('#tablekeri').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'print'
+        ],             
+       //disable the column ordering    	
+       "ordering": false, 
+       language: {
+        searchPlaceholder: "Find records..."
+    }, 
+       } );
+   } );
+</script>
+</div>
+    </br>
+    </br>
+
+    <div class="modal fade" id="activateModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="confirmModalLabel">Action Confirmation</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                
+                <div class="modal-body">
+                    <div class="alert alert-danger">
+                        <h5 id="item">Are you sure you want to action this?</h5>
+                    </div>
+                </div>
+                     
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-danger" id="confirm">Action</a>
+                </div>      
+            </div>
+        </div>
+    </div>
+
+   
+    {% endif %}
+{% endblock %}

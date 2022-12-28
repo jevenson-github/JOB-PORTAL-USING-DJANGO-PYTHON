@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block content %}
+{% load static %}
+    <div class="login_container"> 
+
+        <div class="login_item2">
+            <img src="{% static 'img/72.png' %}" alt="" width="600px">
+        </div>
+    <div class="login_item1">
+        <div class="">
+            <h3>Login</h3>
+            <br>
+            
+            {% if form.errors %}
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <div class="alert alert-danger alert-dismissable">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+                {% for error in form.non_field_errors %}
+                    <div class="alert alert-danger alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <form action="" method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-group">
+                        <label for="id_{{ field.name }}" style="color:violet ;">{{ field.label }} :</label>
+                        <input type="{{ field.field.widget.input_type }}"
+                               class="form-control"
+                               name="{{ field.name }}"
+                               id="id_{{ field.name }}"
+                               placeholder="{{ field.field.widget.attrs.placeholder }}">
+                    </div>
+                {% endfor %}
+               
+                    <button type="submit" class="btn action_button"> Log in
+                    </button>
+                
+            </form>
+        </div>
+    </div> 
+   
+</div>
+{% endblock %}

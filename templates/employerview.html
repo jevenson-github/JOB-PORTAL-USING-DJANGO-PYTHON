@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Admin Employees
+{% endblock %}
+
+{% block content %}
+    {% if request.user.is_superuser %}
+    <div style="margin-top: 64px;"> 
+
+        
+
+        <div style="margin-left:320px ;" > 
+            <a class="nav-link" href="{% url 'accounts:admin-employers' %}"> 
+
+                <span style="font-size: 2rem; color:#4d0099;">
+         <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-arrow-up-left-square" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm10.096 8.803a.5.5 0 1 0 .707-.707L6.707 6h2.768a.5.5 0 1 0 0-1H5.5a.5.5 0 0 0-.5.5v3.975a.5.5 0 0 0 1 0V6.707l4.096 4.096z"/>
+          </svg> 
+          Go Back
+        </span>
+            </a>
+        </div>
+        <div class="container-fluid" style="margin-left: 10px;">
+    
+                <div class="container">   
+                    <div class="row my-3">
+    
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header bg-info text-white">
+                                    Employer's Detail Page
+                                </div>
+                        
+                                <div class="card-body p-5">
+                                    <div class="row">
+                                       
+                                        <span class="h3">{{ employer.first_name }}</span>
+                                        <hr>
+                                        <table class="table bg-white table-borderless m-3">
+                                            <tbody>                           
+                                                <tr>
+                                                    <th scope="row">Description:</th>
+                                                    <td>{{ employer.skill }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Website:</th>
+                                                    <td>{{ employer.experience }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Address:</th>
+                                                    <td>{{ employer.last_name }}</td>
+                                                </tr>
+                                                
+
+                                            </tbody>
+                                        </table>         
+                                        <hr>
+                                        <span class="h3"> Posted Jobs </span>   
+                                        <hr>
+                                        <table class="table bg-white text-center">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Job</th>
+                                                    <th scope="col">Type</th>
+                                                    <th scope="col">Salary</th>
+                                                    <th scope="col">Created_at</th>
+                                                    <th scope="col">Status</th>
+                                                    
+                                                 
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for posted_job in posted_jobs %}
+                                                <tr>
+                                                    <td>{{ posted_job.title }}</td>
+                                                    <td>{% if posted_job.type == '1' %}Full Time {% elif posted_job.type == '2' %} Part Time {% else %} Internship {% endif %}</td>
+                                                    <td>{{ posted_job.salary }}</td>  
+                                                    <td>{{ posted_job.created_at }}</td>  
+                                                    <td>{% if posted_job.filled == True %}Filled{% else %} Not Filled {% endif %}</td> 
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>                           
+                                    </div>                          
+                                </div>
+    
+                            </div>
+                        </div>
+                
+                    </div>
+                </div>
+    
+        </div>
+    
+    </div>
+   
+    {% endif %}
+{% endblock %}

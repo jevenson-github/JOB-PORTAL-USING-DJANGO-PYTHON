@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap-select/css/bootstrap-select.min.css' %}">
+{% endblock %}
+
+{% block content %}
+    
+    <section class="bg-light-gray">
+        <div class="" style="display: grid; grid-template-columns:auto auto;"> 
+            <div class="" style="margin-left: 400px;"> 
+                <br><br><br><br><br><br><br> 
+                <h2 style="color: #4d0099;">View | Update Job Information  </h2> 
+                <br>
+                    
+            </div>
+            <div style="margin-left: -300px;">
+                <img src="{% static 'img/62.png' %}" alt="" width="600px">
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    {% if form.errors %}
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <div class="alert alert-danger alert-dismissable">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    <strong>{{ field.name }} {{ error|escape }}</strong>
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                    {% endif %}
+                    <form id="job-main-form" method="post" action="" class="job-add-form">
+                        {% csrf_token %}
+                        <div class="row">
+                          
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 form-group">
+                                <label for="title" style="color: rgb(88, 39, 180);" > <strong>Job Title :</strong>  </label>
+                                <input id="title" name="title" type="text" value="{{ job.title }}" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 form-group">
+                                <label for="text" style="color: rgb(88, 39, 180);" > <strong> Job Description :</strong> </label>
+                                <textarea id="text" name="description" rows="5" class="form-control"> {{ job.description }} </textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 form-group">
+                                <label for="location" style="color: rgb(88, 39, 180);"><strong> Location (Area) :</strong>  </label>
+                                <input id="location" name="location" type="text" placeholder="e.g. Rio de Janeiro"
+                                value="{{ job.location }}" class="form-control" style="background-color: white; color:black;">
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <label for="type" style="color: rgb(88, 39, 180);" ><strong> Category : </strong> </label>
+                                <select id="type" name="type" placeholder="Choose job type"
+                                        class="form-control select2">
+                                    <option value="1" {% if job.type == 'Full time' %} selected="selected" {% endif %}>Full time</option>
+                                    <option value="2" {% if job.type == 'Part time' %} selected="selected" {% endif %}>Part time</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 form-group">
+                                <label for="skillReq" style="color: rgb(88, 39, 180);" ><strong> Skills Required : </strong> </label>
+                                <input id="skillReq" name="skillReq" value="{{ job.skillReq }}" type="text" placeholder="e.g. C++"
+                                       class="form-control">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-6 form-group">
+                                <label for="salary" style="color: rgb(88, 39, 180);"><strong> Starting Salary : </strong> </label>
+                                <input id="salary" name="salary" value="{{ job.salary }}"  type="text" class="form-control">
+                            </div>
+                            <div class="col-xl-6 form-group">
+                                <label for="validity" style="color: rgb(88, 39, 180);" ><strong> Job Availability :</strong>  </label>
+                                <input id="validity" name="last_date"   type="date" value="{{ job.last_date }}" class="form-control">
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div >
+                                <hr>
+                                <button type="submit" class="btn action_button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-arrow-up" viewBox="0 0 16 16">
+                                    <path d="M8.5 11.5a.5.5 0 0 1-1 0V7.707L6.354 8.854a.5.5 0 1 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 7.707V11.5z"/>
+                                    <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+                                  </svg>
+                                    Save and publish
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

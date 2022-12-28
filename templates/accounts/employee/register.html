@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Employee Register
+{% endblock %}
+
+{% block content %} 
+
+
+<br>
+<div class="" style="display: grid; grid-template-columns:auto auto;"> 
+    <div class="" style="margin-left: 430px;"> 
+        <br><br><br><br><br><br><br> 
+        <h2 style="color: #4d0099;">You are Signing Up as a <br> Job Seeker </h2> 
+        <br>
+      
+    </div>
+    <div style="margin-left: -300px;">
+        <img src="{% static 'img/73.png' %}" alt="" width="600px">
+    </div>
+</div>
+
+
+    <div class="col-lg-6 offset-3 my-4"> 
+        <div class="box">
+
+                    {% if form.errors %}
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <div class="alert alert-danger alert-dismissable">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    <strong>{{ error|escape }}</strong>
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                        {% for error in form.non_field_errors %}
+                            <div class="alert alert-danger alert-dismissable">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    <div class="" style="color: rgb(186, 47, 186);">
+                        <b>User Information : </b>
+                    </div>
+                    <img src="{% static 'img/442.png' %}" class="uploadPfp" id="imageHolder" onchange="changeImage()" width="150px" height="150px">
+                    <form action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% for field in form %}
+                            {% if field.name == 'gender' %}
+                                
+                        <div class="">
+                            <b style="color: rgb(186, 47, 186);" >Other Information : </b>
+                        </div>
+            
+                                <div class="form-group">
+                                    <label for="gender">Gender</label>
+                                    <br>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender" id="male gender"
+                                               value="male">
+                                        <label class="form-check-label" for="male">Male</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender" id="female"
+                                               value="female">
+                                        <label class="form-check-label" for="female">Female</label>
+                                    </div>
+                                </div>
+        
+                            {% elif field.name != 'image' and field.name != 'resume' %}
+                                
+                                
+                                {% if field.name == 'username' %}
+                                    <div >
+                                        <b style="color: rgb(186, 47, 186);">Account Registration : </b>
+                                    </div>
+                                {% endif %}
+                                
+                                <div class="form-group">
+                                    <label for="id_{{ field.name }}" style="color: rgb(186, 47, 186);" >{{ field.label }}</label>
+                                    <input type="{{ field.field.widget.input_type }}"
+                                           class="form-control"
+                                           name="{{ field.name }}"
+                                           id="id_{{ field.name }}"
+                                           placeholder="{{ field.field.widget.attrs.placeholder }}">
+                                </div>
+                            {% else %}
+                                <div class="form-group">
+                                    <label for="id_{{ field.name }}">{{ field.label }}</label>
+                                    <input type="{{ field.field.widget.input_type }}"
+                                        class="form-control"
+                                        name="{{ field.name }}"
+                                        id="id_{{ field.name }}"
+                                        placeholder="{{ field.field.widget.attrs.placeholder }}"
+                                        accept="{{ field.field.widget.attrs.accept }}"
+                                        {% if field.name == 'image'%}
+                                        onchange="document.getElementById('imageHolder').src = window.URL.createObjectURL(this.files[0])"
+                                        {% endif %}>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                        <div class="d-flex ">
+                            <button type="submit" class="btn action_button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
+                                <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                              </svg>  Sign Up 
+                            </button>
+                        </div>
+                    </form>
+                      
+        </div>
+    </div>
+
+{% endblock %}
+

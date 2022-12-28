@@ -1,0 +1,365 @@
+/* your styles go here */
+/* .header{
+    background-color: aquamarine;
+} */
+
+/* body style  */ 
+body{
+    font-family: 'Poppins', sans-serif;
+  }
+/* style na nila */
+.footer-edit-buttons{
+    display: flex;
+    justify-content: space-between;
+}
+
+#imageHolder, .imageHolder{
+    /* display: block; */
+    margin: auto;
+    border-radius: 50%;
+   border: 1px solid rgb(0, 166, 242);
+   padding: 2px;
+}
+
+/* .imageHolderBorder{
+    border: #C85410;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 100%;
+} */
+
+.center-title{
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+
+
+.navbar {
+    background: #212733;
+}
+
+.btn-outline-black-primary {
+    color: #fff;
+    background-color: #212733;
+    border-color: #212733;
+}
+
+.btn-outline-black-primary:hover {
+    color: #fff;
+    background-color: #14181f;
+    border-color: #14181f;
+}
+
+.footer__block {
+    background: #cdc6bc;
+    padding: 80px 0;
+}
+
+.action_button{
+    color: #4d0099;
+    background-color: #c8aae62f;
+}
+.btn-primary-blue{
+    color: #fff;
+    background-color: #212733;
+    border-color: #212733;
+}
+
+.btn-primary-blue:hover {
+    color: #fff;
+    background-color: #14181f;
+    border-color: #14181f;
+}
+
+.page-item.active .page-link {
+    color: #fff;
+    background-color: #C85410;
+    border-color: #C85410;
+}
+
+.page-link {
+    color: #333;
+    background-color: #fff;
+    border: 1px solid rgba(51, 51, 51, 0.2);
+}
+
+.page-link:hover {
+    color: #98400c;
+    background-color: #fff;
+    border: 1px solid rgba(51, 51, 51, 0.2);
+}
+
+.accent {
+    color: #C85410;
+}
+/* #C85410 */
+
+
+/* style ko na ito  */
+/* addtional UI CSS  */  
+
+.nav-item:hover {
+ background-color: #6219b5a5;
+ border-radius: 5px ;
+ border-bottom: 1px solid rgb(209, 167, 238);
+}
+.header_background{ 
+    position: relative;
+   background-image: url("/static/img/chart.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height:400px;
+    text-align: left;
+}
+.header_background > h3 , .header_background > h5 , .header_background > button{
+    margin-top: 100px;
+    position: absolute;
+    color: #fbfbfb;
+    margin-left: 400px;
+    margin-right: 400px;
+    font-weight: 400; 
+    
+}
+
+/* additional UI 1 */
+.grid-container1 {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    padding: 10px;
+    margin-left: 400px;
+    margin-right: 400px;
+    column-gap: 40px;
+    row-gap: 40px;
+  }
+  .grid-item1 {
+    padding: 10px;
+    background-color: rgba(187, 182, 182, 0.116);
+    width: 250px;
+    border-bottom: 3px solid rgb(190, 185, 185);
+  } 
+  .grid-item1:hover{
+    background-color: #18171620;
+    transition: 1s ease;
+   }
+ 
+  .description{
+    color: gray;
+  }
+
+  /* admin CSS */
+  .admin_dashboard{
+    margin-left: 400px;
+    margin-right: 400px;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    column-gap: 20px;
+  }
+.statistic1{
+
+    box-shadow: 0px 5px 10px 0px rgba(2, 22, 64, 0.5);
+    padding: 10px;
+    border-radius: 10px;
+} 
+.item1_chart{
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 15px;
+}
+
+.item1{
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 15px;
+}
+.container_table{
+    width: 60% ; 
+    margin-left: 400px;
+}
+.table{
+ 
+
+    font-size: 12px;
+}
+
+/* Job Search Section  */ 
+.jobsearch_section {
+    background-color: #1c2331;
+    border-bottom: 4px solid #6e71c0;
+    padding-left: 250px;
+    display: grid;
+    grid-template-columns: auto auto;
+    
+  }
+  #profession{
+    background-color: #1c2331;
+    color: white;
+  }
+  #location{
+    background-color: #1c2331;
+    color: white;
+  } 
+  .search_item1{
+    margin-left: 150px;
+  }
+  .search_side{
+    margin-top: 50px;
+    color: white;
+    margin-left: -20%;
+
+  }
+  
+  /* log in page css  */
+  .login_container{
+    display: grid;
+    grid-template-columns: auto auto;
+
+  }
+  .login_item1{
+    width: 70%;
+    margin-top: 120px;
+    margin-left: -200px;
+
+  }
+  .login_item2{
+    margin-left: 30%;
+    margin-top: 20px;
+  }
+  /* featured jobs */
+  .featured_jobs {
+    margin-left: 100px;
+    padding: 10px;
+  }
+  .featured_jobs:nth-child(even){
+    background-color: #aac2f21b;
+  }
+  .featured_jobs:hover{
+    background-color: #aac2f21b;
+    border-radius: 10px;
+  }
+
+  .featured_jobs2 {
+    margin-left: 400px;
+    margin-right: 400px;
+    padding: 10px;
+  }
+  .featured_jobs2:nth-child(odd){
+    background-color: #aac2f21b;
+  }
+  .featured_jobs2:hover{
+    background-color: #aac2f21b;
+    border-radius: 10px;
+  }
+
+  /* trending jobs */
+  .trending{
+    display: grid;
+    grid-template-columns: auto auto;
+    padding-left: 400px;
+    padding-right: 400px;
+
+  }
+  .trends{
+    background-color: #aac2f220;
+    margin: 10px;
+    padding: 10px;
+  }
+
+  /* Companies */
+  .section2{
+    /* border-top: 3px solid #1c2331; */
+
+    padding-bottom: 100px;
+    margin-top: 100px;
+  }
+  .section2 > h4{
+    color: #000000;
+    
+  }
+
+  .grid-container2{
+    display: grid;
+    grid-template-columns: auto auto auto auto ;
+    margin-left: 400px;
+    margin-right: 400px;
+    column-gap: 20px;
+    row-gap: 20px;
+  } 
+  .grid-item2{ 
+    width: 200px;
+    text-align: center;
+    padding-top: 20px;
+    height: 200px;
+    color: #000000;
+    font-weight: 500;
+    background-color: #aac2f21b;
+    border-bottom: 2px solid #aac2f2;
+  }
+/* Chart CSS  */
+.chart{
+    display: grid;
+    grid-template-columns: auto auto; 
+    margin-left: 400px;
+    margin-right: 400px; 
+    margin-top: 150px;
+  }
+  .item1{ 
+   text-align:left;
+    width: 600px;
+  }
+  .item2{
+    text-align: left;  
+    margin-left: 100px;
+  }
+  /* applicant info  */
+  .applicant_info{
+    display: grid;
+    grid-template-columns: auto auto;
+  }
+  .info2{
+    margin-left: -200px;
+  }
+
+
+    
+  /* main page grid additional UI  */
+  .container1 {  display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "Picture Picture INFO-1"
+      "Picture Picture INFO-2"
+      "Picture Picture INFO-3"; 
+
+      margin-left: 410px;
+      margin-right: 350px;
+      margin-top: 50px; 
+      gap: 20px 48px; 
+
+
+  }
+
+  .Picture { 
+    grid-area: Picture;
+    color: #4d0099;
+  }
+  
+  .INFO-1 { 
+    grid-area: INFO-1;  
+  }
+  
+  .INFO-2 { 
+    grid-area: INFO-2; 
+  }
+  
+  .INFO-3 { 
+    grid-area: INFO-3; 
+
+  }
+  

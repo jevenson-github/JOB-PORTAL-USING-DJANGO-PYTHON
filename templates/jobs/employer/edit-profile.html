@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Edit Company Profile
+{% endblock %}
+
+{% block content %}
+
+   <br> 
+
+    <div class="col-lg-6 offset-3">
+        <div class="box">
+            <h3 class="heading">Edit Company Profile : </h3> 
+            <br>
+            {% if form.errors %}
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <div class="alert alert-danger alert-dismissable">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+                {% for error in form.non_field_errors %}
+                    <div class="alert alert-danger alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% for field in form %}
+                    {% if field.name == 'image' %}
+
+                    <img src="/media/{{ field.value }}" class="uploadPfp" id="imageHolder" onchange="changeImage()" width="150px" height="150px">
+                    <div class="form-group">
+                        <label for="id_{{ field.name }}" style="color:#4d0099;">{{ field.label }} : </label>
+                        <input type="{{ field.field.widget.input_type }}"
+                                class="form-control"
+                                name="{{ field.name }}"
+                                id="id_{{ field.name }}"
+                                value="{{ field.value }}"
+                                placeholder="{{ field.field.widget.attrs.placeholder }}"
+                                accept="{{ field.field.widget.attrs.accept }}"
+                                onchange="document.getElementById('imageHolder').src = window.URL.createObjectURL(this.files[0])">
+                    </div>
+                    {% else %}
+
+                        <div class="form-group">
+                            <label for="id_{{ field.name }}" style="color:#4d0099;">{{ field.label }}</label>
+                            <input type="{{ field.field.widget.input_type }}"
+                                   class="form-control"
+                                   name="{{ field.name }}"
+                                   id="id_{{ field.name }}"
+                                   value="{{ field.value }}"
+                                   placeholder="{{ field.field.widget.attrs.placeholder }}">
+                        </div>
+
+                    {% endif %}
+                {% endfor %}
+                <div class="footer-edit-buttons">
+                    <button type="button" class="btn action_button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-key" viewBox="0 0 16 16">
+                        <path d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z"/>
+                        <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                      </svg>  Change Password
+                    </button>
+                    <button type="submit" class="btn action_button ">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2-circle" viewBox="0 0 16 16">
+                        <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z"/>
+                        <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z"/>
+                      </svg>  Update
+                    </button> 
+
+                      <!-- button for delete -->
+                      <a data-toggle="modal" data-target="#deleteModal" class="btn action_button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                        <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+                      </svg> Delete Account
+                    </a>
+
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- DELETE CONFIRMATION MODAL -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="logoutModalLongTitle">Confirmation</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger">
+                    <h5>Are you sure you want to delete account?</h5>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal"> Close </button>
+              <a class="btn btn-danger" href="{% url 'accounts:delete-account' %}"> Delete </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+{% endblock %}
